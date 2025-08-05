@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <script>
+        function validateForm(event) {
+            event.preventDefault(); 
+
+            var a = document.getElementById("n1").value.trim();
+            var b = document.getElementById("n2").value.trim();
+            var c = document.getElementById("n3").value.trim();
+
+            if (a === "" || b === "" || c === "") 
+            {
+                alert("All fields are mandatory");
+                return false;
+            }
+
+            if (b !== c) 
+            {
+                alert("Passwords do not match");
+                return false;
+            }
+
+            alert("Form submitted successfully!");
+            return true;
+        }
+    </script>
+    <style>
+        body {
+            text-align: center;
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+        form
+        {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        input 
+        {
+            border: 2px solid #ccc;
+            height: 25px;
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] 
+        {
+            background: ;
+            color: white;
+            border: none;
+            height: 35px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover 
+        {
+            background: #800080;
+        }
+    </style>
+</head>
+<body>
+    <form onsubmit="return validateForm(event)">
+        <label for="n1">User Id</label><br>
+        <input type="text" id="n1" placeholder="User Id"><br>
+
+        <label for="n2">Password</label><br>
+        <input type="password" id="n2" placeholder="Pass"><br>
+
+        <label for="n3">Confirm Password</label><br>
+        <input type="password" id="n3" placeholder="Confirm Pass"><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
