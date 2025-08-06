@@ -5,25 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form</title>
     <script>
+        function toggleVotingField() {
+            var age = document.getElementById("age").value;
+            var votingField = document.getElementById("voting_card_container");
+
+            if (age === "above") {
+                votingField.style.display = "block";
+            } else {
+                votingField.style.display = "none";
+            }
+        }
+
         function validateForm(event) {
-            event.preventDefault(); 
+            event.preventDefault();
 
-            var a = document.getElementById("n1").value.trim();
-            var b = document.getElementById("n2").value.trim();
-            var c = document.getElementById("n3").value.trim();
+            var firstName = document.getElementById("first_name").value.trim();
+            var password = document.getElementById("password").value.trim();
+            var confirmPassword = document.getElementById("confirm_password").value.trim();
+            var age = document.getElementById("age").value;
+            var votingCard = document.getElementById("voting_card").value.trim();
+            var submitBtn = document.querySelector('input[type="submit"]');
 
-            if (a === "" || b === "" || c === "") 
-            {
+            if (firstName === "" || password === "" || confirmPassword === "" || age === "") {
                 alert("All fields are mandatory");
                 return false;
             }
 
-            if (b !== c) 
-            {
+            if (password !== confirmPassword) {
                 alert("Passwords do not match");
                 return false;
             }
 
+            if (age === "above" && votingCard === "") {
+                alert("Please enter your voting card details");
+                return false;
+            }
+
+            // If everything is valid
+            submitBtn.style.background = "rgb(0, 128, 0)"; // green
             alert("Form submitted successfully!");
             return true;
         }
@@ -36,12 +55,11 @@
             max-width: 400px;
             box-sizing: border-box;
         }
-        form
-        {
+        form {
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            text-align: left;
         }
-        input 
-        {
+        input, select {
             border: 2px solid #ccc;
             height: 25px;
             width: 100%;
@@ -49,30 +67,43 @@
             margin-bottom: 15px;
             box-sizing: border-box;
         }
-        input[type="submit"] 
-        {
-            background: ;
+        input[type="submit"] {
+            background: rgb(128, 0, 128);
             color: white;
             border: none;
             height: 35px;
             cursor: pointer;
         }
-        input[type="submit"]:hover 
-        {
-            background: #800080;
+        input[type="submit"]:hover {
+            background: rgb(102, 0, 102);
+        }
+        #voting_card_container {
+            display: none;
         }
     </style>
 </head>
 <body>
     <form onsubmit="return validateForm(event)">
-        <label for="n1">User Id</label><br>
-        <input type="text" id="n1" placeholder="User Id"><br>
+        <label for="first_name">First Name</label><br>
+        <input type="text" id="first_name" placeholder="Enter your first name"><br>
 
-        <label for="n2">Password</label><br>
-        <input type="password" id="n2" placeholder="Pass"><br>
+        <label for="password">Password</label><br>
+        <input type="password" id="password" placeholder="Enter password"><br>
 
-        <label for="n3">Confirm Password</label><br>
-        <input type="password" id="n3" placeholder="Confirm Pass"><br>
+        <label for="confirm_password">Confirm Password</label><br>
+        <input type="password" id="confirm_password" placeholder="Re-enter password"><br>
+
+        <label for="age">Age</label><br>
+        <select id="age" onchange="toggleVotingField()">
+            <option value="">Select</option>
+            <option value="under">Under 18</option>
+            <option value="above">18 and above</option>
+        </select><br>
+
+        <div id="voting_card_container">
+            <label for="voting_card">Voting Card Details</label><br>
+            <input type="text" id="voting_card" placeholder="Enter your voting card number"><br>
+        </div>
 
         <input type="submit" value="Submit">
     </form>
