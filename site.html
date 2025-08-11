@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StreetStyle Hub</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
+    header {
+        background-color: #222;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 20px;
+    }
+    header h1 {
+        margin: 0;
+        font-size: 24px;
+    }
+    .menu-links a {
+        text-decoration: none;
+        color: white;
+        margin: 0 8px;
+        font-size: 16px;
+    }
+    .menu-links a:hover {
+        color: orange;
+    }
+    #cartBubble {
+        background: red;
+        color: white;
+        padding: 2px 6px;
+        border-radius: 50%;
+        font-size: 14px;
+        position: absolute;
+        top: 10px;
+        right: 15px;
+    }
+    .cart-icon {
+        font-size: 28px;
+        cursor: pointer;
+        position: relative;
+    }
+    main {
+        padding: 20px;
+    }
+    h2 {
+        text-decoration: underline;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 2px solid black;
+        text-align: center;
+        padding: 10px;
+    }
+    th {
+        background: #f0f0f0;
+    }
+    td img {
+        width: 60px;
+        height: auto;
+    }
+    .buyBtn {
+        background: lightgreen;
+        border: 1px solid #ccc;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+    .buyBtn:hover {
+        background: greenyellow;
+    }
+    footer {
+        text-align: center;
+        padding: 15px;
+        background: #f4f4f4;
+    }
+    .footerBtn {
+        background: lightblue;
+        border: 1px solid #aaa;
+        border-radius: 12px;
+        padding: 8px 15px;
+        cursor: pointer;
+        margin: 0 5px;
+    }
+    .footerBtn:hover {
+        background: skyblue;
+    }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>StreetStyle Hub</h1>
+    <div class="menu-links">
+        <a href="#">Start</a>
+        <a href="#">Sign In</a>
+        <a href="#">Sign Out</a>
+        <span class="cart-icon">&#128722;<span id="cartBubble">0</span></span>
+    </div>
+</header>
+
+<main>
+    <h2>Latest Gear</h2>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Preview</th>
+            <th>Cost</th>
+            <th>Add</th>
+        </tr>
+        <tr>
+            <td>Cyberpunk Hoodie</td>
+            <td><img src="cyberhoodie.jpg" alt="Cyberpunk Hoodie"></td>
+            <td>₹799</td>
+            <td><button class="buyBtn">Add</button></td>
+        </tr>
+        <tr>
+            <td>Retro Sneakers</td>
+            <td><img src="retrosneakers.jpg" alt="Retro Sneakers"></td>
+            <td>₹1299</td>
+            <td><button class="buyBtn">Add</button></td>
+        </tr>
+        <tr>
+            <td>Graffiti Cap</td>
+            <td><img src="graffiticaps.jpg" alt="Graffiti Cap"></td>
+            <td>₹399</td>
+            <td><button class="buyBtn">Add</button></td>
+        </tr>
+    </table>
+</main>
+
+<footer>
+    <button class="footerBtn">Contact Us</button>
+    <button class="footerBtn">Reviews</button>
+    <button class="footerBtn">Policies</button>
+</footer>
+
+<script>
+    let itemsInCart = 0;
+    const cartDisplay = document.getElementById("cartBubble");
+    const addButtons = document.querySelectorAll(".buyBtn");
+
+    addButtons.forEach(function(btn) {
+        btn.addEventListener("click", function() {
+            itemsInCart++;
+            cartDisplay.textContent = itemsInCart;
+        });
+    });
+</script>
+
+</body>
+</html>
